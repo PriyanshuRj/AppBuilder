@@ -1,26 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Dropdown from '../UI/Dropdown'
 import { addNewElement } from '../service/canvas.service';
-import { AiFillCaretRight } from "react-icons/ai";
-
+import { BsPlayFill } from "react-icons/bs";
+import {BiCheckCircle} from "react-icons/bi"
+import Properties from '../Properties/Properties';
 import { useDispatch, useSelector } from 'react-redux';
 import { zoomArray, DragOptions } from '../helpers/constants';
-
+import {  updateProperties } from '../service/canvas.service';
 export default function EditorPicker() {
   const [zoom, setZoom] = useState(zoomArray[8]);
   const [searchQuery, setSearchQuery] = useState("");
   const elements = useSelector((state)=>state.canvas.elements);
+  const selectedElement = useSelector((state)=> state.canvas.selectedElement);
   const dispatch = useDispatch();
+  
 
   function filterComponents(option){
     return option.title.toLowerCase().includes(searchQuery.toLowerCase());
   }
+
+  function saveChanges(){
+
+    updateProperties(dispatch,selectedElement,elements );
+  }
   return (
-    <div className='w-[19rem] h-full bg-[#F9FBFC] flex flex-col py-4'>
+    <div className='w-[19rem] h-full bg-[#F9FBFC] flex flex-col py-4 overflow-y-scroll canvas-scrollbar'>
       <div className='flex flex-row justify-end px-4'>
         <Dropdown selected={zoom} setSelected={setZoom} inputList={zoomArray} />
-        <button className="ml-3 px-3 py-1 bg-[#DEE7FE] text-[#5147E4] flex justify-center items-center rounded ">
-          <AiFillCaretRight className='mr-1 text-sm' />
+        <button className="ml-3 px-3 py-1 bg-[#DFE7FF] text-[#5046E4] flex justify-center items-center rounded ">
+          <BsPlayFill className='mr-1 text-sm h-5 w-5' />
           <p>Preview</p>
         </button>
       </div>
@@ -59,7 +67,7 @@ export default function EditorPicker() {
           <span className='mt-2 px-4 text-gray-500 font-semibold text-sm'> Components </span>
           {
             DragOptions.filter(filterComponents).map((option,index)=>{
-              return <div key={index} className='px-4  hover:bg-gray-200 ease-in-out duration-200'
+              return <div key={index} className='px-2  hover:bg-gray-200 ease-in-out duration-200'
                 onClick={() => addNewElement(option.element, dispatch, elements.length)}
               > 
                 <div
@@ -80,6 +88,16 @@ export default function EditorPicker() {
             })
           }
         </div>
+        {
+          selectedElement &&  <div className='flex flex-col w-full'>
+            <div className='mt-2 w-full px-4 flex justify-between items-center mb-2'>
+          <span className=' text-gray-500 font-semibold text-sm'> Properties </span>
+          <BiCheckCircle className='text-green-500 w-5 h-5' onClick={()=> saveChanges()}/>
+          </div>
+          <Properties elementProperties={selectedElement} />
+        </div>
+        }
+      
       </div>
     </div>
   )

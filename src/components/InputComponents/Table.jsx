@@ -7,17 +7,19 @@ export default function Table({element}) {
       <thead>
   <tr>
     {element.headings?.map((heading, index)=>{
-      return <th className='border'>{heading}</th>
+      return <th key={index} className='border'>{heading}</th>
     })}
   </tr>
   </thead>
   <tbody>
-
-  <tr>
-    {element.headings?.map((heading, index)=>{
-      return <td  className='text-center border '>{heading}</td>
+    {[...Array(element.rows)].map((e,index)=>{
+      return   <tr key={index }>
+      {element.headings?.map((heading, index)=>{
+        return <td key={index}  className='text-center border '>{heading}</td>
+      })}
+    </tr>
     })}
-  </tr>
+
     </tbody>
   </table>
       </div>

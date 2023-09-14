@@ -4,7 +4,6 @@ export function saveToLocalStorage(elements) {
 }
 
 export function addNewElement(element, dispatch, totalElements) {
-    console.log(element)
     let newElement = {
         id: `canvas-element-${totalElements + 1}`,
         x: 0,
@@ -23,7 +22,6 @@ export function addNewElement(element, dispatch, totalElements) {
         newElement.placeholder = "Input Field";
     }
     else if (element === "dropdown") {
-        console.log("Added element")
         newElement.label = "Dropdown";
         newElement.options = ["Option 1", "Option 2", "Option 3", "Option 4"];
     }
@@ -31,13 +29,25 @@ export function addNewElement(element, dispatch, totalElements) {
       newElement.h = 4;
       newElement.w = 6;
       newElement.headings = ["Head 1", "Head 2", "Head 3", "Head 4"];
+      newElement.rows = 1;
 
    
     }
     dispatch(addElement(newElement));
 }
 export function updatePosition(elements, dispatch){
-    console.log(elements)
     dispatch(setElement(elements));
 }
 
+export function grabElement(id, elements, dispatch){
+
+  const element = elements.find((element) => element.id === id);
+  dispatch(selectElement(element));
+}
+
+
+export function updateProperties(dispatch, element, elements){
+    var resultElements = elements.filter((e) => e.id !== element.id);
+    dispatch(setElement([...resultElements, element]))
+    dispatch(selectElement(null));
+}

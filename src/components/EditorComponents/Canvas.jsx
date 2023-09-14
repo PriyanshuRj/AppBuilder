@@ -8,7 +8,7 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { saveToLocalStorage, updatePosition } from "../service/canvas.service";
+import { saveToLocalStorage, updatePosition, grabElement } from "../service/canvas.service";
 import PolkaDotGrid from '../UI/PolkaDot';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -31,12 +31,9 @@ export default function EditorCanvas() {
   }
   function handleDragStop(layouts) {
     const updatedElements = canvas.elements.map((element) => {
-      console.log(layouts, element)
       const matchingElement = layouts.find((item) => item.i === element.id);
-      console.log(element.id, matchingElement)
       if (matchingElement) {
         const { x, y, w, h } = matchingElement;
-        console.log(matchingElement)
         return {
           ...element,
           x: matchingElement.x,
@@ -52,9 +49,9 @@ export default function EditorCanvas() {
     setShowDots(false);
   }
   function handleResizeStop(layout, oldItem, newItem) {
+    
     const updatedElements = canvas.elements.map((element) => {
-      console.log(element.id, newItem.id)
-      if (element.id === newItem.id) {
+      if (element.id === newItem.i) {
         const { w, h } = newItem;
         const previousSize = sizeRef.current[element.id] || {};
 
@@ -92,8 +89,9 @@ export default function EditorCanvas() {
 
   }
 
-  function elementClickHandler() {
-
+  function elementClickHandler(id) {
+    grabElement(id, canvas.elements, dispatch);
+    setShowDots(false);
   }
   return (
     <div className='flex flex-col flex-grow'>
@@ -107,15 +105,6 @@ export default function EditorCanvas() {
             </h1>
           </div>
         )}
-
-        {showDots && (
-          <div className='absolute top-0 left-0 h-full w-full z-0'>
-
-            <PolkaDotGrid rows={gridCols} columns={gridCols} />
-          </div>
-        )}
-        <div className='z-20'>
-
 
           <ResponsiveGridLayout
             className="layout"
@@ -169,7 +158,13 @@ export default function EditorCanvas() {
               </div>
             ))}
           </ResponsiveGridLayout>
-        </div>
+
+          {showDots && (
+          <div className='absolute top-0 left-0 h-full w-full z-0'>
+
+            <PolkaDotGrid rows={gridCols} columns={gridCols} />
+          </div>
+        )}
 
       </div>
     </div>
