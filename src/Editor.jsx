@@ -4,6 +4,9 @@ import EditorCanvas from "./components/EditorComponents/Canvas";
 import EditorPicker from "./components/EditorComponents/Picker";
 
 const Editor = () => {
+
+
+
   return (
     <div className="flex relative h-full">
       <EditorCanvas />

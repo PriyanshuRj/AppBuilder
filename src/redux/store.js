@@ -1,8 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './slices/rootReducer';
-
+import {configureStore} from '@reduxjs/toolkit'
+import canvasSlice from './slices/canvas.slice';
 const store = configureStore({
-  reducer: rootReducer,
-});
+  reducer: {
+    canvas: canvasSlice,
+  }
+})
 
 export default store;

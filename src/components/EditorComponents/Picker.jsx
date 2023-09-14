@@ -1,45 +1,26 @@
 import React, { useState } from 'react'
 import Dropdown from '../UI/Dropdown'
+import { addNewElement } from '../service/canvas.service';
+import { AiFillCaretRight } from "react-icons/ai";
 
-import { AiFillCaretRight, AiOutlineTable } from "react-icons/ai";
-import {BiChevronDown} from 'react-icons/bi';
-const zoomArray = ["10", "20", "30", "40", "50", "60", "70", "80", "82.2", "90", "100"];
-const DragOptions = [
-  {
-    icon: 'Aa',
-    title:'Text Input',
-    subTitle:'Supports Markdown or HTML.'
-  },
-  {
-    icon:  <p className=" bg-blue-500  text-slate-100 px-1.5 py-0.5 rounded m-auto flex items-center justify-center text-[9px] font-medium">
-    ACTION
-  </p>,
-    title:'Button',
-    subTitle:'Trigger actions like run queries, export data etc.'
-  },
-  {
-    icon: <div className="w-5 h-5 bg-slate-900 text-slate-100 rounded flex items-center justify-center">
-    <BiChevronDown />
-  </div>,
-    title:'Dropdown',
-    subTitle:'Select from a set of options, with a dropdown.'
-  },
-  {
-    icon: <div className="rounded flex items-center justify-center text-[#8A9097]">
-    <AiOutlineTable className="w-6 h-6"/>
-  </div>,
-    title:'Table',
-    subTitle:'Display tabular data with pagination.'
-  }
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { zoomArray, DragOptions } from '../helpers/constants';
+
 export default function EditorPicker() {
   const [zoom, setZoom] = useState(zoomArray[8]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const elements = useSelector((state)=>state.canvas.elements);
+  const dispatch = useDispatch();
+
+  function filterComponents(option){
+    return option.title.toLowerCase().includes(searchQuery.toLowerCase());
+  }
   return (
-    <div className='w-[22rem] h-full bg-[#f9fbfc] flex flex-col py-4'>
+    <div className='w-[19rem] h-full bg-[#F9FBFC] flex flex-col py-4'>
       <div className='flex flex-row justify-end px-4'>
         <Dropdown selected={zoom} setSelected={setZoom} inputList={zoomArray} />
         <button className="ml-3 px-3 py-1 bg-[#DEE7FE] text-[#5147E4] flex justify-center items-center rounded ">
-          <AiFillCaretRight className='mr-1' />
+          <AiFillCaretRight className='mr-1 text-sm' />
           <p>Preview</p>
         </button>
       </div>
@@ -65,8 +46,9 @@ export default function EditorPicker() {
               <input
                 type="text"
                 placeholder="Search Components"
-                className="w-full py-2 pl-12 pr-4 border-none rounded-md outline-none "
-                name="searchValue"
+                className="w-full py-[0.65rem] pl-12 pr-4 border-none rounded-md outline-none text-sm"
+                name="search"
+                onChange={(e)=>setSearchQuery(e.target.value)}
               />
 
             </div>
@@ -74,20 +56,22 @@ export default function EditorPicker() {
         </div>
         </div>
         <div className='flex flex-col'>
-          <span className='px-4 text-gray-500 font-semibold mb-4'> Components </span>
+          <span className='mt-2 px-4 text-gray-500 font-semibold text-sm'> Components </span>
           {
-            DragOptions.map((option,index)=>{
-              return <div className='px-4  hover:bg-gray-200 ease-in-out duration-200'> 
+            DragOptions.filter(filterComponents).map((option,index)=>{
+              return <div key={index} className='px-4  hover:bg-gray-200 ease-in-out duration-200'
+                onClick={() => addNewElement(option.element, dispatch, elements.length)}
+              > 
                 <div
               className="px-4 flex gap-4 border-b border-b-[#A0B8C789] py-4 cursor-pointer"
               key={index}
             >
-              <div className="w-16 h-16 min-w-[4rem] rounded font-medium flex items-center justify-center  bg-white drop-shadow-lg shadow  ">
+              <div className="h-12 min-w-[3rem] rounded flex items-center justify-center text-[1.25rem]  bg-white drop-shadow-xl shadow  font-bold">
                 {option.icon}
               </div>
               <div className="text-start flex-grow">
-                <p className="font-semibold text-[#1A1A1A]">{option.title}</p>
-                <p className="text-[#707880]">
+                <p className="font-semibold text-[#1A1A1A] text-sm">{option.title}</p>
+                <p className="text-[#707880] text-[0.825rem]">
                   {option.subTitle}
                 </p>
               </div>

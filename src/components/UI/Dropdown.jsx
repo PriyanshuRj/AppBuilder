@@ -17,7 +17,7 @@ export default function Dropdown({inputList, DivWidth, selected, setSelected}) {
           <div className="relative w-full mt-1">
             <Listbox.Button className={`relative w-${DivWidth} py-2 pl-3 pr-10 text-left bg-transparent  rounded-md cursor-default focus:outline-none focus:ring-1 sm:text-sm`} style={{width: DivWidth}}>
               <span className="flex items-center">
-                <span className="block ml-3 truncate">{selected} %</span>
+                <span className="block ml-3 truncate text-sm">{selected} %</span>
               </span>
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 ml-3 pointer-events-none">
                 <BsChevronDown className="w-4 h-4" aria-hidden="true" />
@@ -47,7 +47,7 @@ export default function Dropdown({inputList, DivWidth, selected, setSelected}) {
                       <>
                         <div className="flex items-center">
                           <span
-                            className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
+                            className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate text-sm')}
                           >
                             {item} %
                           </span>
