@@ -62,3 +62,9 @@ export function updateProperties(dispatch, element, elements){
     dispatch(setElement([...resultElements, element]))
     dispatch(selectElement(null));
 }
+
+export function removeFromCanvas(dispatch, element, elements){
+    var resultElements = elements.filter((e) => e.id !== element.id);
+    dispatch(setElement(resultElements));
+    dispatch(selectElement(null));
+}

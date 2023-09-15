@@ -5,7 +5,9 @@ import {BiCheckCircle} from "react-icons/bi"
 import Properties from '../Properties/Properties';
 import { useDispatch, useSelector } from 'react-redux';
 import { zoomArray, DragOptions } from '../../helpers/constants';
-import {  updateProperties,addNewElement } from '../../service/canvas.service';
+import {  updateProperties,addNewElement, removeFromCanvas } from '../../service/canvas.service';
+import {MdDeleteOutline} from 'react-icons/md';
+
 export default function EditorPicker() {
   const [zoom, setZoom] = useState(zoomArray[8]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -21,6 +23,9 @@ export default function EditorPicker() {
   function saveChanges(){
 
     updateProperties(dispatch,selectedElement,elements );
+  }
+  function removeElement(){
+    removeFromCanvas(dispatch,selectedElement,elements)
   }
   return (
     <div className='w-[19rem] h-full bg-[#F9FBFC] flex flex-col py-4 overflow-y-scroll canvas-scrollbar'>
@@ -94,6 +99,11 @@ export default function EditorPicker() {
           <BiCheckCircle className='text-green-500 w-5 h-5' onClick={()=> saveChanges()}/>
           </div>
           <Properties elementProperties={selectedElement} />
+          <div className='mt-2 w-full px-4 flex justify-between items-center mb-2'>
+          <span className=' text-gray-500 text-sm'> Remove Element </span>
+          <MdDeleteOutline className='text-red-500 w-6 h-6 self-end' onClick={()=> removeElement()}/>
+          </div>
+          
         </div>
         }
       
