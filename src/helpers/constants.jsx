@@ -33,5 +33,7 @@ const DragOptions = [
     element : "table"
   }
 ];
-
-export {zoomArray, DragOptions};
+const gridItemWidth = 20;
+const gridItemHeight = 20;
+const gridCols = 20;
+export {zoomArray, DragOptions, gridItemWidth, gridItemHeight,gridCols };

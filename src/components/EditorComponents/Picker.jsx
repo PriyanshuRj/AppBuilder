@@ -11,11 +11,11 @@ import {MdDeleteOutline} from 'react-icons/md';
 export default function EditorPicker() {
   const [zoom, setZoom] = useState(zoomArray[8]);
   const [searchQuery, setSearchQuery] = useState("");
+  
   const elements = useSelector((state)=>state.canvas.elements);
   const selectedElement = useSelector((state)=> state.canvas.selectedElement);
   const dispatch = useDispatch();
   
-
   function filterComponents(option){
     return option.title.toLowerCase().includes(searchQuery.toLowerCase());
   }

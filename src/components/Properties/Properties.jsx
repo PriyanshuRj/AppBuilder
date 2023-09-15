@@ -4,9 +4,11 @@ import { selectElement } from '../../redux/slices/canvas.slice';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 export default function Properties({ elementProperties }) {
     const dispatch = useDispatch();
+
     function setElementProperties(value) {
         dispatch(selectElement(value));
     }
+
     if (elementProperties.component === "button") {
         return (
 
@@ -38,6 +40,7 @@ export default function Properties({ elementProperties }) {
             </div>
         )
     }
+
     if (elementProperties.component === "input") {
         return (
 
@@ -69,6 +72,7 @@ export default function Properties({ elementProperties }) {
             </div>
         )
     }
+
     if (elementProperties.component === "dropdown") {
         function updateOption(value, index) {
             var options = [...elementProperties.options];
@@ -114,6 +118,7 @@ export default function Properties({ elementProperties }) {
             </div>
         )
     }
+    
     if (elementProperties.component === "table") {
         function updateOption(value, index) {
             var headings = [...elementProperties.headings];

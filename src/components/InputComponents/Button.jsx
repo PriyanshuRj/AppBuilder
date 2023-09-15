@@ -7,8 +7,9 @@ export default function Button({ element }) {
   const buttonStyle = {
     borderRadius: borderRadius,
     backgroundColor: backgroundColor,
-    color : textColor
+    color: textColor
   };
+
   return (
     <button
       className={`text-slate-50 font-semibold tracking-wider w-full h-full hover:cursor-pointer`}

@@ -1,7 +1,13 @@
 import { addElement, setElement, selectElement } from "../redux/slices/canvas.slice";
 
-export function saveToLocalStorage(elements) {
+export function saveElementsToLocalStorage(elements) {
     localStorage.setItem("elements", JSON.stringify(elements));
+}
+export function saveSelectedToLocalStorage(selected) {
+    if(selected)
+        localStorage.setItem("selected", JSON.stringify(selected));
+    else 
+        localStorage.removeItem("selected");
 }
 
 export function addNewElement(element, dispatch, totalElements) {
@@ -54,6 +60,7 @@ export function grabElement(id, elements, dispatch){
 
   const element = elements.find((element) => element.id === id);
   dispatch(selectElement(element));
+  saveSelectedToLocalStorage(element);
 }
 
 
@@ -61,10 +68,12 @@ export function updateProperties(dispatch, element, elements){
     var resultElements = elements.filter((e) => e.id !== element.id);
     dispatch(setElement([...resultElements, element]))
     dispatch(selectElement(null));
+    saveSelectedToLocalStorage(null);
 }
 
 export function removeFromCanvas(dispatch, element, elements){
     var resultElements = elements.filter((e) => e.id !== element.id);
     dispatch(setElement(resultElements));
     dispatch(selectElement(null));
+    saveSelectedToLocalStorage(null);
 }

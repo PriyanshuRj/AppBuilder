@@ -1,21 +1,21 @@
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import {BsChevronDown} from 'react-icons/bs'
+import { CheckIcon } from '@heroicons/react/20/solid'
+import { BsChevronDown } from 'react-icons/bs'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dropdown({inputList, DivWidth, selected, setSelected}) {
+export default function Dropdown({ inputList, DivWidth, selected, setSelected }) {
   return (
-    <Listbox value={selected} onChange={async (value)=>{
+    <Listbox value={selected} onChange={async (value) => {
       setSelected(value)
-      }} >
+    }} >
       {({ open }) => (
-        <div className={`flex flex-col items-start  w-${DivWidth} `} style={{width: DivWidth}}>
+        <div className={`flex flex-col items-start  w-${DivWidth} `} style={{ width: DivWidth }}>
 
           <div className="relative w-full mt-1">
-            <Listbox.Button className={`relative w-${DivWidth} py-2 pl-3 pr-10 text-left bg-transparent  rounded-md cursor-default focus:outline-none focus:ring-1 sm:text-sm`} style={{width: DivWidth}}>
+            <Listbox.Button className={`relative w-${DivWidth} py-2 pl-3 pr-10 text-left bg-transparent  rounded-md cursor-default focus:outline-none focus:ring-1 sm:text-sm`} style={{ width: DivWidth }}>
               <span className="flex items-center">
                 <span className="block ml-3 truncate text-sm">{selected} %</span>
               </span>
@@ -32,7 +32,7 @@ export default function Dropdown({inputList, DivWidth, selected, setSelected}) {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {inputList.map((item,index) => (
+                {inputList.map((item, index) => (
                   <Listbox.Option
                     key={index}
                     className={({ active }) =>

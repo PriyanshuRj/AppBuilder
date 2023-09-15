@@ -8,9 +8,9 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { saveToLocalStorage, updatePosition, grabElement } from "../../service/canvas.service";
+import { saveElementsToLocalStorage, updatePosition, grabElement } from "../../service/canvas.service";
 import PolkaDotGrid from '../UI/PolkaDot';
-
+import { gridItemHeight, gridItemWidth,gridCols } from '../../helpers/constants';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function EditorCanvas() {
@@ -19,12 +19,9 @@ export default function EditorCanvas() {
   const dispatch = useDispatch();
   const sizeRef = useRef({});
 
-  const gridItemWidth = 25;
-  const gridItemHeight = 25;
-  const gridCols = 20;
 
   useEffect(() => {
-    saveToLocalStorage(canvas.elements);
+    saveElementsToLocalStorage(canvas.elements);
   }, [canvas])
   function handleDragStart() {
     setShowDots(true);

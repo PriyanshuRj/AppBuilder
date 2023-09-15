@@ -11,7 +11,7 @@ const PolkaDotGrid = ({ rows, columns }) => {
 
   return <div >
     {[...Array(rows * 20)].map((_, rowIndex) => (
-      <div key={rowIndex} className={`grid h-[25px]`} style={{ gridTemplateColumns: `repeat(20, minmax(0, 1fr))` }}>
+      <div key={rowIndex} className={`grid h-[1.25rem]`} style={{ gridTemplateColumns: `repeat(20, minmax(0, 1fr))` }}>
 
         {polkaDots}
       </div>

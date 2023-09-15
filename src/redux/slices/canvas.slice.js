@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  selectedElement: null,
+  selectedElement: JSON.parse(localStorage.getItem("selected")) || null,
   elements: JSON.parse(localStorage.getItem("elements")) || [],
 }
 
@@ -16,9 +16,9 @@ export const canvasSlice = createSlice({
       state.selectedElement = action.payload
     },
     setElement: (state, action) => {
-      state.elements = [ ...action.payload ]
+      state.elements = [...action.payload]
     },
-    resetElements: (state, action) =>{
+    resetElements: (state, action) => {
       state.elements = []
     }
   }
