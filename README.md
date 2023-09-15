@@ -2,6 +2,8 @@
 
 This repository contains frontend for the Zenskar Front End Engineer Intern Task. Which is a Basic App Builder for genration of static application design including 4 elements - Input Box, Button, Table, Dropdown.
 
+The Hosted URL for the Task - https://zenskar-assignment-orcin.vercel.app/
+
 ## 🧑‍💻Tech
 
 - React.js
