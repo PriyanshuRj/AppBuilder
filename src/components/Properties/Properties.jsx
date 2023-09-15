@@ -13,9 +13,21 @@ export default function Properties({ elementProperties }) {
             <div className='flex flex-col w-full'>
                 <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
                     <label className='text-gray-500 text-sm text-medium'>
-                        Color
+                        Button Color
                     </label>
                     <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.backgroundColor} onChange={(e) => setElementProperties({ ...elementProperties, backgroundColor: e.target.value })} />
+                </div>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Text Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.textColor} onChange={(e) => setElementProperties({ ...elementProperties, textColor: e.target.value })} />
+                </div>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Border Radius
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.borderRadius} onChange={(e) => setElementProperties({ ...elementProperties, borderRadius: e.target.value })} />
                 </div>
                 <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
                     <label className='text-gray-500 text-sm text-medium'>
@@ -36,7 +48,24 @@ export default function Properties({ elementProperties }) {
                     </label>
                     <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.placeholder} onChange={(e) => setElementProperties({ ...elementProperties, placeholder: e.target.value })} />
                 </div>
-
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Background Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.backgroundColor} onChange={(e) => setElementProperties({ ...elementProperties, backgroundColor: e.target.value })} />
+                </div>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Text Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.textColor} onChange={(e) => setElementProperties({ ...elementProperties, textColor: e.target.value })} />
+                </div>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Border Radius
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.borderRadius} onChange={(e) => setElementProperties({ ...elementProperties, borderRadius: e.target.value })} />
+                </div>
             </div>
         )
     }
@@ -56,6 +85,19 @@ export default function Properties({ elementProperties }) {
         return (
 
             <div className='flex flex-col w-full'>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Background Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.backgroundColor} onChange={(e) => setElementProperties({ ...elementProperties, backgroundColor: e.target.value })} />
+                </div>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Text Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.textColor} onChange={(e) => setElementProperties({ ...elementProperties, textColor: e.target.value })} />
+                </div>
+
                 {elementProperties.options.map((opt, index) => {
                     return <div key={index} className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
                         <label className='text-gray-500 text-sm text-medium'>
@@ -85,14 +127,26 @@ export default function Properties({ elementProperties }) {
 
             setElementProperties({ ...elementProperties, headings });
         }
-        
-        function changeRow(value){
+
+        function changeRow(value) {
             var rows = elementProperties.rows + value;
             setElementProperties({ ...elementProperties, rows })
         }
         return (
 
             <div className='flex flex-col w-full'>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Background Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.backgroundColor} onChange={(e) => setElementProperties({ ...elementProperties, backgroundColor: e.target.value })} />
+                </div>
+                <div className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
+                    <label className='text-gray-500 text-sm text-medium'>
+                        Text Color
+                    </label>
+                    <input className='px-2 py-2 bg-gray-50 rounded-lg' value={elementProperties.textColor} onChange={(e) => setElementProperties({ ...elementProperties, textColor: e.target.value })} />
+                </div>
                 {elementProperties.headings.map((hed, index) => {
                     return <div key={index} className='flex flex-row w-full px-4 justify-between mb-2 items-center'>
                         <label className='text-gray-500 text-sm text-medium'>
@@ -110,9 +164,9 @@ export default function Properties({ elementProperties }) {
                     Rows
                     <div className='flex flex-row items-center'>
 
-                        <AiOutlinePlusCircle className='text-green-500 w-5 h-5 mr-2' onClick={(e) => changeRow(1)}  />
+                        <AiOutlinePlusCircle className='text-green-500 w-5 h-5 mr-2' onClick={(e) => changeRow(1)} />
                         {elementProperties.rows}
-                        <AiOutlineMinusCircle className='text-red-500 w-5 h-5 ml-2' onClick={(e) => changeRow(-1)}/>
+                        <AiOutlineMinusCircle className='text-red-500 w-5 h-5 ml-2' onClick={(e) => changeRow(-1)} />
                     </div>
                 </div>
 

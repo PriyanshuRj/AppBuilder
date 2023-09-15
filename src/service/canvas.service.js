@@ -1,4 +1,5 @@
-import { addElement, setElement, selectElement } from "../../redux/slices/canvas.slice";
+import { addElement, setElement, selectElement } from "../redux/slices/canvas.slice";
+
 export function saveToLocalStorage(elements) {
     localStorage.setItem("elements", JSON.stringify(elements));
 }
@@ -17,19 +18,29 @@ export function addNewElement(element, dispatch, totalElements) {
         newElement.value = "Button";
         newElement.borderRadius = 8;
         newElement.backgroundColor = "green";
+        newElement.textColor = "black";
     }
     else if (element === "input") {
         newElement.placeholder = "Input Field";
+        newElement.textColor = "black";
+        newElement.backgroundColor = "white";
+        newElement.borderRadius = 8;
     }
     else if (element === "dropdown") {
         newElement.label = "Dropdown";
         newElement.options = ["Option 1", "Option 2", "Option 3", "Option 4"];
+        newElement.textColor = "black";
+        newElement.backgroundColor = "white";
+
     }
     else if (element === "table") {
-      newElement.h = 4;
-      newElement.w = 6;
-      newElement.headings = ["Head 1", "Head 2", "Head 3", "Head 4"];
-      newElement.rows = 1;
+        newElement.h = 4;
+        newElement.w = 6;
+        newElement.headings = ["Head 1", "Head 2", "Head 3", "Head 4"];
+        newElement.rows = 1;
+        newElement.textColor = "black";
+        newElement.backgroundColor = "white";
+
 
    
     }

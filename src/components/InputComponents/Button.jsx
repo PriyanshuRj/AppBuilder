@@ -3,9 +3,11 @@ import React from 'react'
 export default function Button({ element }) {
   const borderRadius = `${element?.borderRadius}px`;
   const backgroundColor = `${element?.backgroundColor}`;
+  const textColor = `${element?.textColor}`;
   const buttonStyle = {
     borderRadius: borderRadius,
     backgroundColor: backgroundColor,
+    color : textColor
   };
   return (
     <button

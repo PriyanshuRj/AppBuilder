@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Dropdown from '../UI/Dropdown'
-import { addNewElement } from '../service/canvas.service';
 import { BsPlayFill } from "react-icons/bs";
 import {BiCheckCircle} from "react-icons/bi"
 import Properties from '../Properties/Properties';
 import { useDispatch, useSelector } from 'react-redux';
-import { zoomArray, DragOptions } from '../helpers/constants';
-import {  updateProperties } from '../service/canvas.service';
+import { zoomArray, DragOptions } from '../../helpers/constants';
+import {  updateProperties,addNewElement } from '../../service/canvas.service';
 export default function EditorPicker() {
   const [zoom, setZoom] = useState(zoomArray[8]);
   const [searchQuery, setSearchQuery] = useState("");

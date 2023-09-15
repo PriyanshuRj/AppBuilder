@@ -8,7 +8,7 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { saveToLocalStorage, updatePosition, grabElement } from "../service/canvas.service";
+import { saveToLocalStorage, updatePosition, grabElement } from "../../service/canvas.service";
 import PolkaDotGrid from '../UI/PolkaDot';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
