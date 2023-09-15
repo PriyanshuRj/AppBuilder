@@ -2,6 +2,11 @@
 
 This repository contains frontend for the Zenskar Front End Engineer Intern Task. Which is a Basic App Builder for genration of static application design including 4 elements - Input Box, Button, Table, Dropdown.
 
+## 🧑‍💻Tech
+
+- React.js
+- TailwindCSS
+- Redux
 
 ## 👨🏻‍🔬 Set up and run The Server
 
@@ -12,8 +17,6 @@ Clone the repository from GitHub.
 ```
 $ git clone https://github.com/PriyanshuRj/ZenskarAssignment.git
 ```
-
-
 
 
 ### 💻 Install Dependencies and Run the Server
